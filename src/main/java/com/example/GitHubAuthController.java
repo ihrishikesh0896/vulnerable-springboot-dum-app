@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class GitHubAuthController {
 
-    private static final String GITHUB_TOKEN = "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";
+    private static final String GITHUB_TOKEN = "ghp_nV2elQp8JjOmLeT2P5XKFdaaaaaa2I1HVoDl";
 
     @PostMapping("/authenticate")
     public String authenticateToken() {
