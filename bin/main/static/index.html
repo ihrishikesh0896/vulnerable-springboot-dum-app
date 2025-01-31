@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub PAT Authentication</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .valid {
+            color: green;
+        }
+        .invalid {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>GitHub Connection Tester</h1>
+        <button onclick="authenticate()">Authenticate</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function authenticate() {
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = "Authenticating...";
+            resultElement.className = "";
+
+            fetch('/authenticate', { method: '{GET}' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        resultElement.textContent = "Invalid PAT: " + data.error;
+                        resultElement.className = "invalid";
+                    } else {
+                        resultElement.textContent = `Authenticated as: ${data.login}`;
+                        resultElement.className = "valid";
+                    }
+                })
+                .catch(error => {
+                    resultElement.textContent = "Error: " + error.message;
+                    resultElement.className = "invalid";
+                });
+        }
+    </script>
+
+</body>
+</html>
