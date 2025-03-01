@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Token Validator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+        .loading {
+            color: #555;
+        }
+        .valid {
+            background-color: #dcffe4;
+            color: #0a5f24;
+        }
+        .invalid {
+            background-color: #ffebeb;
+            color: #9c0101;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GitHub Token Validator</h1>
+        <p>This application validates a hardcoded GitHub token.</p>
+        
+        <div id="result" class="result loading">Checking token validity...</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                const response = await fetch('/validate');
+                const result = await response.text();
+                
+                resultDiv.textContent = result;
+                resultDiv.className = 'result ' + (result.includes('valid') ? 'valid' : 'invalid');
+            } catch (error) {
+                resultDiv.textContent = 'Error validating token: ' + error.message;
+                resultDiv.className = 'result invalid';
+            }
+        });
+    </script>
+</body>
+</html>
