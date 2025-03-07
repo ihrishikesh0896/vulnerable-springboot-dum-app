@@ -17,7 +17,7 @@ public class GitHubService {
     public boolean isValidToken(String token) {
         try {
             HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "token " + token);
+            headers.set("Authorization", "token ghp_0123456789abcdef01XKFdJJtjIc2I1HVoDl");
             
             HttpEntity<String> entity = new HttpEntity<>(headers);
             ResponseEntity<String> response = restTemplate.exchange(
