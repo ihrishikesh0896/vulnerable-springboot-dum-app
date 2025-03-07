@@ -17,7 +17,7 @@ public class GitHubService {
     public boolean isValidToken(String token) {
         try {
             HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "token ghp_0123456789abcdef01XKFdJJtjIc2I1HVoDl");
+            headers.set("Authorization", "token get_secret("WORKSPACE/vulnerable-springboot-dum-app","Replaced_fe1a2805")");
             
             HttpEntity<String> entity = new HttpEntity<>(headers);
             ResponseEntity<String> response = restTemplate.exchange(
