@@ -13,8 +13,13 @@ repositories {
 }
 
 dependencies {
+    implementation files('/Users/hrishikesh/Desktop/github_projects/secrets_remediation_java_util/build/libs/secrets_remediation_java_util-1.0.jar')
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'software.amazon.awssdk:secretsmanager:2.20.52' //Or latest
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4'
 }
 
 test {
