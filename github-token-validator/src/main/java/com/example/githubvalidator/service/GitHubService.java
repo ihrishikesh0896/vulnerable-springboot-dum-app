@@ -1,5 +1,7 @@
 package com.example.githubvalidator.service;
 
+import com.example.SecretUtils;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -17,7 +19,7 @@ public class GitHubService {
     public boolean isValidToken(String token) {
         try {
             HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "token " + "ghp_1234567890abcdef1234567890abcdef1234");
+            headers.set("Authorization", "token " + SecretUtils.getSecret("vulnerable-springboot-dum-app__", "Replaced_fc5cfae5", "ap-south-1", true));
             
             HttpEntity<String> entity = new HttpEntity<>(headers);
             ResponseEntity<String> response = restTemplate.exchange(
